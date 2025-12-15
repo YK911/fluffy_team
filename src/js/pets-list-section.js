@@ -1,5 +1,3 @@
-
-// Секція «Наші хвостики»
 import axios from "axios";
 import iziToast from "izitoast";
 import { ENDPOINTS, server } from "./server-api";
@@ -43,7 +41,7 @@ async function handleContentLoad(e) {
         renderPagination();
         checkLoadMoreBtnStatus();
     } catch (error) {
-      iziToast.error({
+       iziToast.error({
             title: 'Помилка',
             message: 'Щось пішло не так',
             position: 'topRight',
@@ -152,7 +150,7 @@ async function handlePaginationClick(e) {
         if (categoryId) {
             animals = await fetchCategoryById(categoryId, page);
         } else {
-        animals = await fetchAllAnimals(page);
+         animals = await fetchAllAnimals(page);
         }   
 
         renderAnimals(animals);
@@ -210,7 +208,7 @@ async function fetchCategoryById(id, page) {
 
 function categoryTemplate(category) {
     return `
-    <li class="category-item" data-id="${category._id}">
+     <li class="category-item" data-id="${category._id}">
         <button class="category-btn" type="button">${category.name}</button>
       </li>`
 }
@@ -233,7 +231,7 @@ function animalTemplate({ _id, name, image, species, age, gender, categories, de
         .join('');
     
     return `
-    <li class="pets-item" data-id="${_id}">
+     <li class="pets-item" data-id="${_id}">
         <img class="pets-img" src="${image}" alt="${name} - ${species}" />
         <div class="pets-list-wrapper">
           <p class="pets-category">${species}</p>
@@ -357,3 +355,5 @@ function checkLoadMoreBtnStatus() {
         showLoadBtn();
     }
 }
+
+
