@@ -4,13 +4,13 @@ import { ENDPOINTS, server } from "./server-api";
 import { refs } from "./refs";
 import { loadFromLS, saveToLS } from "./storage";
 let limit = getLimitByScreen();
-let page = loadFromLS(‘page’) || 1;
+let page = loadFromLS('page') || 1;
 let totalItems;
-let categoryId = loadFromLS(‘categoryId’) ?? null;
-document.addEventListener(‘DOMContentLoaded’, handleContentLoad);
-refs.petsLoadMoreBtn.addEventListener(‘click’, handleLoadMoreBtnClick);
-refs.categoryList.addEventListener(‘click’, handleCategoryBtnClick);
-refs.petsListPagination.addEventListener(‘click’, handlePaginationClick);
+let categoryId = loadFromLS('categoryId') ?? null;
+document.addEventListener('DOMContentLoaded', handleContentLoad);
+refs.petsLoadMoreBtn.addEventListener('click', handleLoadMoreBtnClick);
+refs.categoryList.addEventListener('click', handleCategoryBtnClick);
+refs.petsListPagination.addEventListener('click', handlePaginationClick);
 function getLimitByScreen() {
   const width = window.innerWidth;
   if (width >= 1440) return 9;
@@ -41,7 +41,7 @@ async function handleContentLoad(e) {
     }
     } catch (error) {
        iziToast.error({
-            title: ‘Помилка‘,
+            title: 'Помилка',
 import axios from "axios";
 import iziToast from "izitoast";
 import { ENDPOINTS, server } from "./server-api";
