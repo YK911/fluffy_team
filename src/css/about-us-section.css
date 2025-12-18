@@ -107,13 +107,13 @@
 .about-swiper-button-prev {
   left: 0;
   transform: translate(-50%, -50%);
-  bottom: 0;
+  bottom: -32px;
 }
 
 .about-swiper-button-next {
   right: 0;
   transform: translate(50%, -50%);
-  bottom: 0;
+  bottom: -32px;
 }
 
 .about-swiper-button-prev svg {
@@ -204,6 +204,14 @@
     width: 768px;
     margin: 0 auto;
   } */
+
+.about-swiper-button-prev {
+  transform: translate(-50%,-100%);
+}
+
+.about-swiper-button-next {
+  transform: translate(50%,-100%);
+}
 
   .about-swiper-slide {
     aspect-ratio: 704 / 404;
