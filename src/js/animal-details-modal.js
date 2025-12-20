@@ -1,6 +1,6 @@
 import { refs } from "./refs";
 import spriteUrl from "../img/sprite.svg";
-import { loadFromLS } from "./storage";
+import { getLastFocusedElement, setLastFocusedElement } from "./focus";
 
 refs.animalDetailsBackdrop.addEventListener('click', handleBackdropClick);
 let animalId = null;
