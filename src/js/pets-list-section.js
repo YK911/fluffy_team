@@ -5,6 +5,7 @@ import { refs } from "./refs";
 import { loadFromLS, saveToLS } from "./storage";
 import spriteUrl from '/img/sprite.svg';
 import {openAnimalModal } from "./animal-details-modal";
+import { setLastFocusedElement } from "./focus";
 
 let limit = getLimitByScreen();
 let page = loadFromLS('page');
