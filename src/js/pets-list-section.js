@@ -172,6 +172,8 @@ async function handlePaginationClick(e) {
           top: refs.petsList.offsetTop - 80,
           behavior: 'smooth',
       });
+     const firstCard = refs.petsList.querySelector('li');
+    if (firstCard) firstCard.focus();
   } catch (error) {
       iziToast.error({
           title: 'Помилка',
