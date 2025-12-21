@@ -74,7 +74,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 16px;
 }
 
 #swiper-button-prev,
@@ -108,7 +108,7 @@
 }
 
 .arrow-icon {
-  color: #02060a;
+  stroke: #02060a;
 }
 
 .error-swiper {
