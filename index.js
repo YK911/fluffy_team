@@ -20,7 +20,8 @@ import{a as G,i as h,S as Q,N as se,P as re,A as ie,R as le,b as J}from"./assets
           <p class="animal-age">${a}</p>
           <p class="animal-gender">${o}</p>
         </div>
-          <div class="description-section">
+        <div class="desc-wrapper">
+        <div class="description-section">
           <h3 class="descriprion-title">Опис:</h3>
           <p class="descriprion-text">${d}</p>
         </div>
@@ -34,6 +35,7 @@ import{a as G,i as h,S as Q,N as se,P as re,A as ie,R as le,b as J}from"./assets
         </div>
         <button class="modal-adopt-btn" type="button">Взяти додому</button>
       </div>
+        </div>
     </div>
   </div>
   `;r.animalDetailsBackdrop.innerHTML=p}function N(){r.animalDetailsBackdrop.classList.remove("is-open"),document.body.style.overflow="",window.removeEventListener("keydown",R);const e=H();e&&e.focus()}function R(e){e.key==="Escape"&&N()}function pe(e){e.currentTarget===e.target&&N()}function j(e){e.focus();const n=e.querySelectorAll(`
