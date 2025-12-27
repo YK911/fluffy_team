@@ -3,6 +3,8 @@ import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
+import { beasties } from 'vite-plugin-beasties';
+import { imagePresets, hdPreset } from 'vite-plugin-image-presets';
 
 export default defineConfig(({ command }) => {
   return {
@@ -40,8 +42,26 @@ export default defineConfig(({ command }) => {
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
+      imagePresets({
+        hero: hdPreset({
+          class: 'img-fluid',
+          formats: {
+            avif: { quality: 60 },
+            webp: { quality: 70 },
+            original: { quality: 80 },
+          },
+        }),
+      }),
       SortCss({
         sort: 'mobile-first',
+      }),
+      beasties({
+        options: {
+          preload: 'swap',
+          pruneSource: true, // Enable pruning CSS files
+          inlineThreshold: 4000, // Inline stylesheets smaller than 4kb
+          reduceInlineStyles: true,
+        },
       }),
     ],
   };
