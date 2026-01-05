@@ -16,24 +16,19 @@ const myBeastiesPlugin = () => ({
 
     try {
       const html = await fs.readFile(htmlPath, 'utf8');
-
-      // Знаходимо назву CSS файлу (бо Vite додає хеш, як-от main-C0SILCN0.css)
       const files = await fs.readdir(assetsDir);
       const cssFile = files.find(file => file.endsWith('.css'));
 
       const beasties = new Beasties({
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
-        // Явно вказуємо файл, який треба обробити
         additionalStylesheets: [cssFile ? `/assets/${cssFile}` : []].flat(),
         preload: 'swap',
         pruneSource: true,
-        inlineThreshold: 4000,
+        inlineThreshold: 10000,
         reduceInlineStyles: true,
       });
 
-      // ХАК: Щоб Beasties не сварився на відсутність файлу в HTML,
-      // ми тимчасово зробимо шлях у HTML відносним (приберемо /fluffy_team/)
       const tempHtml = html.replace(/\/fluffy_team\//g, '');
 
       let optimizedHtml = await beasties.process(tempHtml);
