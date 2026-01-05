@@ -1,39 +1,23 @@
 <!DOCTYPE html>
-
 <html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Хатинка Лапок</title>
-    <meta
-      name="description"
-      content="«Хатина лапок» — притулок для тварин. Ми лікуємо, доглядаємо та шукаємо дім для кожного хвостика."
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
-      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-
+  {{> head }}
   <body>
-    <load src="./partials/header.html" />
+    {{> header }}
     <main>
-      <load src="./partials/hero-section.html" />
-      <load src="./partials/pets-list-section.html" />
-      <load src="./partials/about-us-section.html" />
-      <load src="./partials/faq-section.html" />
-      <load src="./partials/susccess-stories-section.html" />
-      <load src="./partials/animal-details-modal.html" />
-      <load src="./partials/order-modal.html" />
+      {{> hero }}
+      {{> pets }}
+      {{> about }}
+      {{> faq }}
+      {{> susccess-stories }}
+      {{> animal-details-modal }}
+      {{> order-modal }}
     </main>
-    <load src="./partials/scroll-top.html" />
-    <load src="./partials/footer.html" />
+    {{> footer }}
+    {{> scroll-top }}
 
-    <script type="module" src="./main.js"></script>
+    <script
+      type="module"
+      src="./main.js"
+    ></script>
   </body>
 </html>

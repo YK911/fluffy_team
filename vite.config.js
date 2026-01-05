@@ -1,47 +1,66 @@
+import path from 'path';
 import { defineConfig } from 'vite';
-import { glob } from 'glob';
-import injectHTML from 'vite-plugin-html-inject';
+import viteCompression from 'vite-plugin-compression';
 import FullReload from 'vite-plugin-full-reload';
-import SortCss from 'postcss-sort-media-queries';
+import handlebars from 'vite-plugin-handlebars';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import critical from 'rollup-plugin-critical';
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
   return {
-    define: {
-      [command === 'serve' ? 'global' : '_global']: {},
-    },
     root: 'src',
-    build: {
-      sourcemap: true,
-      rollupOptions: {
-        input: glob.sync('./src/*.html'),
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-          },
-          entryFileNames: chunkInfo => {
-            if (chunkInfo.name === 'commonHelpers') {
-              return 'commonHelpers.js';
-            }
-            return '[name].js';
-          },
-          assetFileNames: assetInfo => {
-            if (assetInfo.name && assetInfo.name.endsWith('.html')) {
-              return '[name].[ext]';
-            }
-            return 'assets/[name]-[hash][extname]';
-          },
-        },
+
+    server: {
+      port: 5410,
+      open: true,
+      watch: {
+        ignored: ['**/.stylelintcache', '**/.eslintcache'],
       },
+    },
+
+    build: {
       outDir: '../dist',
       emptyOutDir: true,
+      sourcemap: true,
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        },
+      },
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'src/index.html'),
+        },
+      },
     },
+
     plugins: [
-      injectHTML(),
-      FullReload(['./src/**/**.html']),
-      SortCss({
-        sort: 'mobile-first',
+      handlebars({
+        partialDirectory: path.resolve(__dirname, 'src/partials'),
+      }),
+
+      critical({
+        criticalUrl: 'dist/',
+        criticalBase: 'dist/',
+        criticalPages: [{ uri: 'index.html', template: 'index' }],
+        criticalConfig: {
+          inline: true,
+          dimensions: [
+            { width: 375, height: 667 }, // Mobile
+            { width: 1300, height: 900 }, // Desktop
+          ],
+        },
+      }),
+
+      createHtmlPlugin({ minify: true }),
+
+      FullReload(['./src/**/**.html', './src/partials/**/**.hbs']),
+
+      viteCompression({
+        algorithm: 'brotliCompress',
+        ext: '.br',
+        verbose: false,
       }),
     ],
   };
