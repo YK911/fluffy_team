@@ -1,11 +1,11 @@
+import path from 'path';
 import { defineConfig } from 'vite';
-import { imagetools } from 'vite-imagetools';
 import viteCompression from 'vite-plugin-compression';
 import FullReload from 'vite-plugin-full-reload';
+import handlebars from 'vite-plugin-handlebars';
 import { createHtmlPlugin } from 'vite-plugin-html';
-import path from 'path';
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
   return {
     root: 'src',
 
@@ -18,9 +18,9 @@ export default defineConfig(({ command }) => {
     },
 
     build: {
-      sourcemap: true,
       outDir: '../dist',
       emptyOutDir: true,
+      sourcemap: true,
       minify: 'terser',
       terserOptions: {
         compress: {
@@ -35,24 +35,14 @@ export default defineConfig(({ command }) => {
     },
 
     plugins: [
-      createHtmlPlugin({
-        minify: true,
-        pages: [
-          {
-            filename: 'index.html',
-            template: 'index.html',
-            injectOptions: {
-              data: { baseUrl: '/fluffy_team/' },
-            },
-          },
-        ],
+      handlebars({
+        // Шлях до паршалів
+        partialDirectory: path.resolve(__dirname, 'src/partials'),
       }),
 
-      imagetools({
-        include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp}*',
-      }),
+      createHtmlPlugin({ minify: true }),
 
-      FullReload(['./src/**/**.html']),
+      FullReload(['./src/**/**.html', './src/partials/**/**.hbs']),
 
       viteCompression({
         algorithm: 'brotliCompress',

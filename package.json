@@ -17,8 +17,13 @@
     "sharp": "^0.34.5",
     "terser": "^5.44.1",
     "vite": "^5.4.6",
-    "vite-plugin-beasties": "^0.3.5",
-    "vite-plugin-compression": "^0.5.1"
+    "vite-imagetools": "^9.0.2",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-full-reload": "^1.2.0",
+    "vite-plugin-handlebars": "^2.0.0",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-image-optimizer": "^2.0.3",
+    "vite-plugin-sharp": "^1.0.0"
   },
   "dependencies": {
     "accordion-js": "^3.4.1",
@@ -28,11 +33,6 @@
     "raty": "^1.0.5",
     "raty-js": "^4.3.0",
     "sweetalert2": "^11.26.4",
-    "swiper": "^12.0.3",
-    "vite-imagetools": "^9.0.2",
-    "vite-plugin-full-reload": "^1.2.0",
-    "vite-plugin-html": "^3.2.2",
-    "vite-plugin-html-inject": "^1.1.2",
-    "vite-plugin-imagemin": "^0.6.1"
+    "swiper": "^12.0.3"
   }
 }

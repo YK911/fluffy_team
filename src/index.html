@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="uk">
-  <% const absPartialsDir = process.cwd() + '/src/partials/'; %>
-  <%- include(absPartialsDir + 'head.ejs') %>
+  {{> head }}
   <body>
-    <%- include(absPartialsDir + 'header.ejs') %>
+    {{> header }}
     <main>
-      <%- include(absPartialsDir + 'hero.ejs') %>
-      <%- include(absPartialsDir + 'pets.ejs') %>
-      <%- include(absPartialsDir + 'about.ejs') %>
-      <%- include(absPartialsDir + 'faq.ejs') %>
-      <%- include(absPartialsDir + 'susccess-stories.ejs') %>
-      <%- include(absPartialsDir + 'animal-details-modal.ejs') %>
-      <%- include(absPartialsDir + 'order-modal.ejs') %>
+      {{> hero }}
+      {{> pets }}
+      {{> about }}
+      {{> faq }}
+      {{> susccess-stories }}
+      {{> animal-details-modal }}
+      {{> order-modal }}
     </main>
-    <%- include(absPartialsDir + 'footer.ejs') %>
-    <%- include(absPartialsDir + 'scroll-top.ejs') %>
+    {{> footer }}
+    {{> scroll-top }}
 
     <script
       type="module"

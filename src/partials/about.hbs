@@ -1,4 +1,3 @@
-<% const absPartialsDir = process.cwd() + '/src/partials/'; %>
 <section id="about">
   <div class="container">
     <h2 class="about-title">Чому Хатинка Лапок</h2>
@@ -7,8 +6,7 @@
       <div class="about-swiper mySwiper">
         <div class="about-swiper-wrapper">
           <div class="about-swiper-slide">
-            <%- include(absPartialsDir + 'about-images.ejs', { pathname: '1', alttext:
-            'Дівчина годує собаку' }) %>
+            {{> about-image path="1" alt="Дівчина годує собаку" }}
 
             <div class="about-card-text">
               <p>
@@ -20,8 +18,8 @@
             </div>
           </div>
           <div class="about-swiper-slide">
-            <%- include(absPartialsDir + 'about-images.ejs', { pathname: '2', alttext:
-            'Собака сумна, а потім радісно біжить' }) %>
+            {{> about-image path="2" alt="Собака сумна, а потім радісно біжить" }}
+
             <div class="about-card-text">
               <p>
                 Ми рятуємо, реабілітуємо та знаходимо люблячі родини для
@@ -32,8 +30,8 @@
             </div>
           </div>
           <div class="about-swiper-slide">
-            <%- include(absPartialsDir + 'about-images.ejs', { pathname: '3', alttext:
-            'Наша команда разом із тваринами' }) %>
+            {{> about-image path="3" alt="Наша команда разом із тваринами" }}
+
             <div class="about-card-text">
               <p>
                 "Хатинка Лапок" — це команда професійних ветеринарів, кінологів
@@ -44,8 +42,8 @@
             </div>
           </div>
           <div class="about-swiper-slide">
-            <%- include(absPartialsDir + 'about-images.ejs', { pathname: '4', alttext:
-            'Спортивний майданчик для наших улюбленців' }) %>
+            {{> about-image path="4" alt="Спортивний майданчик для наших улюбленців" }}
+
             <div class="about-card-text">
               <p>
                 Ми створили безпечний та комфортний простір. Кожна тварина
@@ -56,8 +54,8 @@
             </div>
           </div>
           <div class="about-swiper-slide">
-            <%- include(absPartialsDir + 'about-images.ejs', { pathname: '5', alttext:
-            'Собака в обіймах людини' }) %>
+            {{> about-image path="5" alt="Собака в обіймах людини" }}
+
             <div class="about-card-text">
               <p>
                 Ваша допомога — безцінна. Ви можете взяти тваринку додому, стати
