@@ -32,7 +32,7 @@ const myBeastiesPlugin = () => ({
       let optimizedHtml = await beasties.process(tempHtml);
 
       // ПОВЕРТАЄМО ПРЕФІКС: Повертаємо /fluffy/ назад для коректних посилань на сайті
-      optimizedHtml = optimizedHtml.replace(/(href|src)="\//g, '$1="/fluffy/');
+      optimizedHtml = optimizedHtml.replace(/(href|src)="\//g, '$1="/fluffy_team/');
 
       await fs.writeFile(htmlPath, optimizedHtml);
       console.log('\x1b[32m%s\x1b[0m', '✓ Critical CSS generated and paths restored!');
