@@ -10,32 +10,38 @@ const myBeastiesPlugin = () => ({
   name: 'beasties-plugin',
   async closeBundle() {
     const fs = await import('fs/promises');
+    const path = await import('path');
     const htmlPath = path.resolve(__dirname, 'dist/index.html');
+    const assetsDir = path.resolve(__dirname, 'dist/assets');
 
     try {
-      let html = await fs.readFile(htmlPath, 'utf8');
+      const html = await fs.readFile(htmlPath, 'utf8');
 
-      // ТИМЧАСОВИЙ ХАК: Beasties шукає шлях /fluffy/assets/...
-      // Ми тимчасово видаляємо префікс базового шляху в рядку HTML,
-      // щоб Beasties шукав просто assets/... відносно папки dist/
-      const tempHtml = html.replace(/\/fluffy_team\//g, '/');
+      // Знаходимо назву CSS файлу (бо Vite додає хеш, як-от main-C0SILCN0.css)
+      const files = await fs.readdir(assetsDir);
+      const cssFile = files.find(file => file.endsWith('.css'));
 
       const beasties = new Beasties({
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/', // Шукатиме відносно папки dist
+        publicPath: '/',
+        // Явно вказуємо файл, який треба обробити
+        additionalStylesheets: [cssFile ? `/assets/${cssFile}` : []].flat(),
         preload: 'swap',
         pruneSource: true,
         inlineThreshold: 4000,
         reduceInlineStyles: true,
       });
 
+      // ХАК: Щоб Beasties не сварився на відсутність файлу в HTML,
+      // ми тимчасово зробимо шлях у HTML відносним (приберемо /fluffy_team/)
+      const tempHtml = html.replace(/\/fluffy_team\//g, '');
+
       let optimizedHtml = await beasties.process(tempHtml);
 
-      // ПОВЕРТАЄМО ПРЕФІКС: Повертаємо /fluffy/ назад для коректних посилань на сайті
       optimizedHtml = optimizedHtml.replace(/(href|src)="\//g, '$1="/fluffy_team/');
 
       await fs.writeFile(htmlPath, optimizedHtml);
-      console.log('\x1b[32m%s\x1b[0m', '✓ Critical CSS generated and paths restored!');
+      console.log('\x1b[32m%s\x1b[0m', '✓ Critical CSS generated successfully!');
     } catch (error) {
       console.error('\x1b[31m%s\x1b[0m', '✗ Beasties failed:', error);
     }
